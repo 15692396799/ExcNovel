@@ -6,7 +6,6 @@ import Banner from '../components/Banner.tsx';
 import PopularStories from '../components/PopularStories.tsx';
 import Categories from '../components/Categories.tsx';
 
-
 export default function HomePage() {
     return (
         <div>

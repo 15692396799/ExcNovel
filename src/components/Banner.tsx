@@ -6,6 +6,9 @@ import '../styles/Banner.css';
 import { Story } from '../types';
 
 import StoryList  from './StoryList';
+// import dotenv from 'dotenv';
+// dotenv.config();
+// how to load .env file in tsx file?
 
 // interface Story {
 //     id: number;
@@ -63,7 +66,12 @@ export default class Banner extends Component<{}, BannerState> {
             error: null
         }
 
-        this.fetchUrl =  'https://15692396799.github.io/stories-api/stories.json';
+        // this.fetchUrl =  'https://15692396799.github.io/stories-api/stories.json';
+        //change the fecthUrl to local mongodb
+        this.fetchUrl =  'http://localhost:5000/api/stories';
+
+        // this.fetchUrl = process.env.REACT_APP_DB_DOMAIN+ '/api/stories'
+        // use in cjs file not in tsx file
         this.setting =  {    
             dots: true, // 显示分页点
             infinite: true, // 无限循环
