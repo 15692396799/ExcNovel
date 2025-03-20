@@ -6,7 +6,7 @@ import SubscriptionPage from './pages/SubscriptionPage.tsx';
 import UserProfilePage from './pages/UserProfilePage.tsx';
 
 import './styles/App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 

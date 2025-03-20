@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
-// import '../styles/Header.css';
+import '../styles/Header.css';
 
 interface HeaderState {
     content: string;
-    inputValue: string;
+    inputValue: string; 
 }
 
 interface HeaderProps {

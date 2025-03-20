@@ -134,7 +134,7 @@ export default class Banner extends Component<{}, BannerState> {
                 </div>
                 <div className='banner'>
                     <Silder className='silder' {...this.setting}>
-                        {stories.map((story) => (
+                        {/* {stories.map((story) => (
                             <div key={story.id} className='banner-item'>
                                 <img src={story.image+'?v1'} alt={story.title} className="banner-cover" />
                                 <div className="banner-content">
@@ -142,14 +142,14 @@ export default class Banner extends Component<{}, BannerState> {
                                     <p className="banner-description">{story.description}</p>
                                 </div>
                             </div>
-                        ))}
+                        ))} */}
                         {/*use public component to replace it*/}
                         {/* <StoryList stories={stories} layout='banner' /> */}
-                        {/* {stories.map((story) => (
+                        {stories.map((story) => (
                             <div key={story.id}>
                                 <StoryList stories={[story]} layout='banner' />
                             </div>
-                        ))} */}
+                        ))}
                     </Silder>
                 </div>                
             </div>
