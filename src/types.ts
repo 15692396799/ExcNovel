@@ -3,7 +3,12 @@ interface Story {
     title: string;
     image: string;
     description: string;
-    category: string;
+    type: string;
 }
 
-export type {Story};
+interface Category {
+    id: number;
+    name: string;
+    type: string;
+}
+export type {Story, Category};

@@ -8,7 +8,7 @@ interface StoryListState {
 
 interface StoryListProps {
     stories: Story[];
-    layout?: 'grid' | 'banner';
+    layout?: 'grid' | 'banner'|'category';
 }
 
 export default class StoryList extends Component<StoryListProps, {}> {

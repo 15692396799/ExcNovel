@@ -5,7 +5,10 @@ import 'slick-carousel/slick/slick-theme.css';
 import '../styles/Banner.css';
 import { Story } from '../types';
 
-import StoryList  from './StoryList';
+import StoryList from './StoryList';
+import { Carousel } from 'react-bootstrap';
+import BannerList from './BannerList.jsx';
+
 // import dotenv from 'dotenv';
 // dotenv.config();
 // how to load .env file in tsx file?
@@ -38,41 +41,21 @@ export default class Banner extends Component<{}, BannerState> {
     fetchUrl: string;
 
 
-    constructor(props:any) {
+    constructor(props: any) {
         super(props);
         this.state = {
-            stories: [
-                {
-                  id: 1,
-                  image: 'https://via.placeholder.com/800x400?text=Cover+1',
-                  title: '故事标题 1',
-                  description: '这是第一个故事的简介，内容非常精彩。',
-                },
-                {
-                  id: 2,
-                  image: 'https://via.placeholder.com/800x400?text=Cover+2',
-                  title: '故事标题 2',
-                  description: '这是第二个故事的简介，内容非常精彩。',
-                },
-                {
-                  id: 3,
-                  image: 'https://via.placeholder.com/800x400?text=Cover+3',
-                  title: '故事标题 3',
-                  description: '这是第三个故事的简介，内容非常精彩。',
-                },
-              ]
-            ,
+            stories: [],
             loading: true,
             error: null
         }
 
         // this.fetchUrl =  'https://15692396799.github.io/stories-api/stories.json';
         //change the fecthUrl to local mongodb
-        this.fetchUrl =  'http://localhost:5000/api/stories';
+        this.fetchUrl = 'http://localhost:5000/api/stories';
 
         // this.fetchUrl = process.env.REACT_APP_DB_DOMAIN+ '/api/stories'
         // use in cjs file not in tsx file
-        this.setting =  {    
+        this.setting = {
             dots: true, // 显示分页点
             infinite: true, // 无限循环
             speed: 500, // 切换速度
@@ -87,10 +70,10 @@ export default class Banner extends Component<{}, BannerState> {
     componentDidMount() {
         const abortController = new AbortController();
         const signal = abortController.signal;
-    
+
         // Set a timeout for the fetch request
         const timeout = 5000; // 5 seconds
-        
+
         const fetchPromise = fetch(this.fetchUrl, { signal })
             .then(response => {
                 if (!response.ok) {
@@ -99,7 +82,7 @@ export default class Banner extends Component<{}, BannerState> {
                 return response.json();
             })
             .then(data => {
-                this.setState({...this.state, stories: data, loading: false});  
+                this.setState({ stories: data, loading: false });
                 console.log("Successfully!");
             })
             .catch(error => {
@@ -108,16 +91,16 @@ export default class Banner extends Component<{}, BannerState> {
                 } else {
                     console.log(error);
                 }
-                this.setState({...this.state, loading: false, error: error.message});
+                this.setState({ loading: false, error: error.message });
             });
-    
+
         const timeoutPromise = new Promise((_, reject) => {
             setTimeout(() => {
                 abortController.abort(); // Abort the fetch request
                 reject(new Error("Timeout"));
             }, timeout);
         });
-    
+
         Promise.race([fetchPromise, timeoutPromise])
             .catch(error => {
                 if (error.message === "Timeout") {
@@ -141,8 +124,25 @@ export default class Banner extends Component<{}, BannerState> {
                     <h2 className='header-title'>热门小说推荐</h2>
                 </div>
                 <div className='banner'>
-                    <Silder className='silder' {...this.setting}>
-                        {/* {stories.map((story) => (
+                    <BannerList banners={stories.slice(0,5)} />
+                    {/* <Carousel>
+                        {stories.map((story, index) => (
+                            <Carousel.Item key={index}>
+                                <img
+                                    className="d-block w-100"
+                                    src={story.image + '?v1'}
+                                    alt={story.title}
+                                    style={{ height: '400px', objectFit: 'cover' }} // 统一封面尺寸
+                                />
+                                <Carousel.Caption>
+                                    <h3>{story.title}</h3>
+                                    <p>{story.description}</p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                        ))}
+                    </Carousel> */}
+                    {/* <Silder className='silder' {...this.setting}>
+                        {stories.map((story) => (
                             <div key={story.id} className='banner-item'>
                                 <img src={story.image+'?v1'} alt={story.title} className="banner-cover" />
                                 <div className="banner-content">
@@ -150,16 +150,16 @@ export default class Banner extends Component<{}, BannerState> {
                                     <p className="banner-description">{story.description}</p>
                                 </div>
                             </div>
-                        ))} */}
-                        {/*use public component to replace it*/}
-                        {/* <StoryList stories={stories} layout='banner' /> */}
+                        ))}
+                        use public component to replace it
+                        <StoryList stories={stories} layout='banner' />
                         {stories.map((story) => (
                             <div key={story.id}>
                                 <StoryList stories={[story]} layout='banner' />
                             </div>
                         ))}
-                    </Silder>
-                </div>                
+                    </Silder> */}
+                </div>
             </div>
 
         );

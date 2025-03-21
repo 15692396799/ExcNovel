@@ -61,3 +61,34 @@
   .story-list.grid .story-item {
     width: calc(25% - 20px); /* 每行显示 4 个 */
   }
+
+  
+/* Category 布局 */
+.story-list.category {
+  flex-wrap: wrap;
+  gap: 15px; /* 调整间距 */
+}
+
+.story-list.category .story-item {
+  width: calc(33.33% - 15px); /* 每行显示 3 个 */
+  background: #fff;
+  border: 1px solid #e0e0e0; /* 添加边框 */
+}
+
+.story-list.category .story-cover {
+  height: 200px; /* 调整封面高度 */
+}
+
+.story-list.category .story-content {
+  padding: 10px;
+}
+
+.story-list.category .story-title {
+  font-size: 16px; /* 调整标题字体大小 */
+  color: #222;
+}
+
+.story-list.category .story-description {
+  font-size: 13px; /* 调整描述字体大小 */
+  color: #555;
+}
