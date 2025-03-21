@@ -4,6 +4,7 @@ interface Story {
     image: string;
     description: string;
     type: string;
+    rating: number;
 }
 
 interface Category {

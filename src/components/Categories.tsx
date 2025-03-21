@@ -1,42 +1,44 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
+import { reaction } from 'mobx';
 import categoryStore from './store';
 import CategoryFilter from './CategoryFilter';
 import CategoryList from './CategoryList';
 import PageController from './PageController';
 import { Category, Story } from '../types';
-// import PageController from './PageController';
 
 interface CategoriesProps {}
-interface CategoriesState {
-    categories: Category[];
-    selectedCategory: Category | null;
-    stories: Story[];
-    loading: boolean;
-    error: Error | null;
-}
 
+const Categories: React.FC<CategoriesProps> = observer(() => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error | null>(null);
 
-class Categories extends Component {
-  fecthCategoryUrl = 'http://localhost:5000/api/categories';
-  fetchTypeUrl = 'http://localhost:5000/api/stories/type';
+  const fecthCategoryUrl = 'http://localhost:5000/api/categories';
+  const fetchTypeUrl = 'http://localhost:5000/api/stories/type';
 
-  componentDidMount() {
-    this.fetchCategories();
-  }
+  useEffect(() => {
+    fetchCategories();
 
-  componentDidUpdate(prevProps: CategoriesProps, prevState: CategoriesState) {
-    if (categoryStore.selectedCategory !== prevState?.selectedCategory) {
-      this.fetchStories();
-    }
-  }
+    // 监听selectedCategory的变化
+    const disposeReaction = reaction(
+      () => categoryStore.selectedCategory,
+      (selectedCategory) => {
+        fetchStories();
+      }
+    );
 
-  fetchCategories = () => {
+    // 清理监听器
+    return () => {
+      disposeReaction();
+    };
+  }, []);//add selectedCategory to the dependency array?
+
+  const fetchCategories = async () => {
     const abortController = new AbortController();
     const signal = abortController.signal;
     const timeout = 5000;
 
-    const fetchPromise = fetch(this.fecthCategoryUrl, { signal })
+    const fetchPromise = fetch(fecthCategoryUrl, { signal })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -45,7 +47,7 @@ class Categories extends Component {
       })
       .then((data) => {
         categoryStore.setCategories(data);
-        categoryStore.setLoading(false);
+        setLoading(false);
       })
       .catch((error) => {
         if (error.name === 'AbortError') {
@@ -53,8 +55,8 @@ class Categories extends Component {
         } else {
           console.error('Error:', error);
         }
-        categoryStore.setLoading(false);
-        categoryStore.setError(error);
+        setLoading(false);
+        setError(error);
       });
 
     const timeoutPromise = new Promise((_, reject) => {
@@ -71,13 +73,13 @@ class Categories extends Component {
     });
   };
 
-  fetchStories = () => {
+  const fetchStories = async () => {
     const abortController = new AbortController();
     const signal = abortController.signal;
     const timeout = 5000;
 
     const fetchPromise = fetch(
-      `${this.fetchTypeUrl}/${encodeURIComponent(categoryStore.selectedCategory?.type || '')}`,
+      `${fetchTypeUrl}/${encodeURIComponent(categoryStore.selectedCategory?.type || '')}`,
       { signal }
     )
       .then((response) => {
@@ -88,7 +90,7 @@ class Categories extends Component {
       })
       .then((data) => {
         categoryStore.setStories(data);
-        categoryStore.setLoading(false);
+        setLoading(false);
       })
       .catch((error) => {
         if (error.name === 'AbortError') {
@@ -96,8 +98,8 @@ class Categories extends Component {
         } else {
           console.error('Error:', error);
         }
-        categoryStore.setLoading(false);
-        categoryStore.setError(error);
+        setLoading(false);
+        setError(error);
       });
 
     const timeoutPromise = new Promise((_, reject) => {
@@ -114,37 +116,35 @@ class Categories extends Component {
     });
   };
 
-  handleCategoryClick = (type: string) => {
-    const selectedCategory = categoryStore.categories.find((category) => category.type === type);
-    categoryStore.setSelectedCategory(selectedCategory || null);
-  };
+  // const handleCategoryClick = (type: string) => {
+  //   const selectedCategory = categoryStore.categories.find((category) => category.type === type) || null;
+  //   categoryStore.setSelectedCategory(selectedCategory);
+  // };
 
-  render() {
-    const { categories, stories, loading, error } = categoryStore;
+  const { categories, stories } = categoryStore;
 
-    return (
-      <div className="categories-container">
-        {/* 过滤器 */}
-        <CategoryFilter />
+  return (
+    <div className="categories-container">
+      {/* 过滤器 */}
+      <CategoryFilter />
 
-        {/* 加载状态 */}
-        {loading && <div className="loading">Loading...</div>}
+      {/* 加载状态 */}
+      {loading && <div className="loading">Loading...</div>}
 
-        {/* 错误信息 */}
-        {error && <div className="error">Error: {error.message}</div>}
+      {/* 错误信息 */}
+      {error && <div className="error">Error: {error.message}</div>}
 
-        {/* 故事列表 */}
-        {stories.length !== 0 ? (
-          <>
-            <CategoryList />
-            <PageController  />
-          </>
-        ) : (
-          <div className="no-data">暂无数据</div>
-        )}
-      </div>
-    );
-  }
-}
+      {/* 故事列表 */}
+      {stories.length !== 0 ? (
+        <>
+          <CategoryList />
+          <PageController />
+        </>
+      ) : (
+        <div className="no-data">暂无数据</div>
+      )}
+    </div>
+  );
+});
 
-export default observer(Categories);
+export default Categories;

@@ -1,61 +1,48 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 
-interface HeaderState {
-    content: string;
-    inputValue: string; 
-}
+const Header: React.FC = () => {
+    const [inputValue, setInputValue] = useState('');
+    const [content, setContent] = useState('');
 
-interface HeaderProps {
-    // category: string;
-    inputValue: string; 
-}
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value);
+    };
 
-export default class Header extends Component<{}, HeaderState> {
-    constructor(props:any){ {/*define props category*/}
-        super(props);
-        this.state = {
-            content: '',
-            inputValue:''
-        };
+    const handleButtonClick = () => {
+        setContent(inputValue);
+        console.log(inputValue);
+    };
 
-        
-    }
+    return (
+        <header className="header">
+            <div className="logo">
+                <Link to="/">EXVNOC</Link> {/* 可替换为 <img src="logo.png" alt="Logo" /> */}
+            </div>
 
-    handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({...this.state, inputValue: e.target.value});
-    }
+            <nav className="nav">
+                <Link to="/">首页</Link>
+                <Link to="/categories">分类</Link>
+                <Link to="/subscription">订阅</Link>
+                <Link to="/about">关于</Link>
+            </nav>
 
-    handleButtonClick = ()=> {
-        this.setState({...this.state, content: this.state.inputValue});
-        console.log(this.state.content);
-    }
+            <div className="search">
+                <input
+                    onChange={handleInputChange}
+                    type="text"
+                    value={inputValue}
+                    placeholder="Search..."
+                />
+                <button onClick={handleButtonClick}>Search</button>
+            </div>
 
-    render() {
-        return (
-            <header className='header'>
-                <div className="logo">
-                    <Link to="/">EXVNOC</Link> {/*add a logo picture*/ }
+            <div className="user">
+                <Link to="/profile">登录/注册</Link>
+            </div>
+        </header>
+    );
+};
 
-                    
-                </div>
-                <nav className='nav'>
-                    <Link to="/">首页</Link>
-                    <Link to="/categories">分类</Link>
-                    <Link to="/subscription">订阅</Link>
-                    <Link to="/about">关于</Link>
-                </nav>
-                <div className="search">
-                    <input onChange={this.handleInputChange} type="text" defaultValue={this.state.content} placeholder="Search..." />
-                    <button onClick={this.handleButtonClick}>Search</button> {/*submit button*/}
-                </div>
-                <div className="user">
-                    <Link to="/profile">登录/注册</Link>
-                </div>
-
-            </header>            
-        );
-    }
-}
+export default Header;
