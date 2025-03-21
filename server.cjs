@@ -48,7 +48,7 @@ app.get('/api/stories', async (req, res) => {
 });
 
 // 获取评分最高的五条故事
-app.get('/api/stories/:recommand', async (req, res) => {
+app.get('/api/stories/recommend', async (req, res) => {
     try {
         // 按评分降序排序，并限制返回结果为 5 条
         const topStories = await Story.find()
@@ -74,7 +74,9 @@ app.get('/api/categories', async (req, res) => {
 // 根据类型获取故事
 app.get('/api/stories/type/:type', async (req, res) => {
     try {
-        const stories = await Story.find({ type: req.params.type });
+        //升序排序
+        const stories = await Story.find({ type: req.params.type })
+            .sort({ rating: 1 });
         console.log(`selected type is ${req.params.type}`);
         res.json(stories);
     } catch (err) {

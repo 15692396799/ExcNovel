@@ -51,7 +51,7 @@ export default class Banner extends Component<{}, BannerState> {
 
         // this.fetchUrl =  'https://15692396799.github.io/stories-api/stories.json';
         //change the fecthUrl to local mongodb
-        this.fetchUrl = 'http://localhost:5000/api/stories';
+        this.fetchUrl = 'http://localhost:5000/api/stories/recommend';
 
         // this.fetchUrl = process.env.REACT_APP_DB_DOMAIN+ '/api/stories'
         // use in cjs file not in tsx file

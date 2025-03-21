@@ -37,7 +37,7 @@ export default class Header extends Component<{}, HeaderState> {
         return (
             <header className='header'>
                 <div className="logo">
-                    <Link to="/">Short Story Hub</Link> {/*add a logo picture*/ }
+                    <Link to="/">EXVNOC</Link> {/*add a logo picture*/ }
 
                     
                 </div>

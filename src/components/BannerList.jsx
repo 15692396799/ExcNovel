@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../styles/BannerList.css';
 
 const BannerList = ({ banners }) => {
     return (

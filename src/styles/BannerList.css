@@ -1,0 +1,19 @@
+/* 自定义字体样式 */
+.carousel-caption h5 {
+    font-family: 'Arial', sans-serif; /* 设置标题字体 */
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .carousel-caption p {
+    font-family: 'Georgia', serif; /* 设置描述字体 */
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+  
+  /* 半透明背景 */
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5); /* 黑色半透明背景 */
+    padding: 20px;
+    border-radius: 10px;
+  }
