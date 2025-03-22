@@ -1,14 +1,11 @@
 import React from 'react';
 import '../styles/BannerList.css';
+import StoryCard from './StoryCard';
+import { Story } from '../types';
 
-interface Banner {
-  image: string;
-  title: string;
-  description: string;
-}
 
 interface BannerListProps {
-  banners: Banner[];
+  banners: Story[];
 }
 
 const BannerList: React.FC<BannerListProps> = ({ banners }) => {
@@ -33,11 +30,11 @@ const BannerList: React.FC<BannerListProps> = ({ banners }) => {
       <div className="carousel-inner">
         {banners.map((banner, index) => (
           <div key={index} className={index === 0 ? "carousel-item active" : "carousel-item"} data-bs-interval="3000">
-            <img src={banner.image} className="d-block w-100" alt={banner.title} />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>{banner.title}</h5>
-              <p>{banner.description}</p>
-            </div>
+            <StoryCard story={banner}>
+          
+            </StoryCard>
+            <h5>{banner.title}</h5>
+            <p>{banner.description}</p>    
           </div>
         ))}
       </div>

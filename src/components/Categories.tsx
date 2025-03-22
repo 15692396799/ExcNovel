@@ -18,6 +18,7 @@ const Categories: React.FC<CategoriesProps> = observer(() => {
 
   useEffect(() => {
     fetchCategories();
+    fetchStories();
 
     // 监听selectedCategory的变化
     const disposeReaction = reaction(
@@ -79,7 +80,7 @@ const Categories: React.FC<CategoriesProps> = observer(() => {
     const timeout = 5000;
 
     const fetchPromise = fetch(
-      `${fetchTypeUrl}/${encodeURIComponent(categoryStore.selectedCategory?.type || '')}`,
+      `${fetchTypeUrl}/${encodeURIComponent(categoryStore.selectedCategory?.type || 'default')}`,
       { signal }
     )
       .then((response) => {

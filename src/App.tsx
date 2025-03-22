@@ -9,6 +9,7 @@ import UserProfilePage from './pages/UserProfilePage.tsx';
 import './styles/App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import Categories from './components/Categories.tsx';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element = {<HomePage/>}></Route>
+          <Route path="/categories" element={<Categories/>}></Route>  
           <Route path="/story/:id" element={<StoryDetailPage/>}></Route>
           <Route path="/subscription" element={<SubscriptionPage/>}></Route>
           <Route path="/profile" element={<UserProfilePage/>}></Route>

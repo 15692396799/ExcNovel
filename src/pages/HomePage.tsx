@@ -13,7 +13,7 @@ export default function HomePage() {
             <p>Welcome to the Home Page</p>
             <Header/>
             <Banner/>
-            <Categories/>            
+            {/* <Categories/>             */}
             <PopularStories/>
             <Footer/>
         </div>

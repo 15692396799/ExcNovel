@@ -1,6 +1,7 @@
 import React from 'react';
 
 import StoryDetail from '../components/StoryDetail';
+import '../styles/StoryDetailPage.css';
 
 
 export default function StoryDetailPage() {

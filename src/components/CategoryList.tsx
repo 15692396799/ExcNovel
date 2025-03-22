@@ -1,6 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import categoryStore from './store';
+import StoryCard from './StoryCard';
 
 const CategoryList: React.FC = observer(() => {
   const { currentNovels } = categoryStore;
@@ -13,11 +14,13 @@ const CategoryList: React.FC = observer(() => {
             <div className="row g-0">
               {/* 左侧：图片缩略图 */}
               <div className="col-md-4">
-                <img
+                {/* <img
                   src={novel.image}
                   className="img-fluid rounded-start"
                   alt={novel.title}
-                />
+                /> */}
+                <StoryCard story={novel} imageStyle="rounded-start">
+                </StoryCard>
               </div>
 
               {/* 右侧：文字介绍 */}

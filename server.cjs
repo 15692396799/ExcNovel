@@ -72,13 +72,23 @@ app.get('/api/categories', async (req, res) => {
 });
 
 // 根据类型获取故事
-app.get('/api/stories/type/:type', async (req, res) => {
+app.get('/api/stories/type/:type?', async (req, res) => {
     try {
         //升序排序
-        const stories = await Story.find({ type: req.params.type })
-            .sort({ rating: 1 });
-        console.log(`selected type is ${req.params.type}`);
-        res.json(stories);
+        if (req.params.type === 'default') {
+            //限制返回数量为100条
+            const stories = await Story.find()
+                .sort({ rating: -1 })
+                .limit(100);
+            console.log(`selected type is ${req.params.type}`);
+            res.json(stories);
+        }
+        else {
+            const stories = await Story.find({ type: req.params.type })
+                .sort({ rating: -1 });
+            console.log(`selected type is ${req.params.type}`);
+            res.json(stories);
+        }
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -87,7 +97,20 @@ app.get('/api/stories/type/:type', async (req, res) => {
 // 根据评分获取故事
 app.get('/api/stories/rating/:rating', async (req, res) => {
     try {
+        //寻找评分大于等于输入评分的故事
         const stories = await Story.find({ rating: { $gte: parseFloat(req.params.rating) } });
+        res.json(stories);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+//按照喜欢的人数获取故事
+app.get('/api/stories/popular', async (req, res) => {
+    try {
+        //寻找喜欢人数大于500的故事
+        const stories = await Story.find({ likes: { $gte: 500 } });
+        // const stories = await Story.find({ like: { $gte: parseInt(req.params.like) } });
         res.json(stories);
     } catch (err) {
         res.status(500).json({ message: err.message });

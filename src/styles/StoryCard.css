@@ -1,0 +1,26 @@
+/* StoryCard.css */
+.story-card {
+    position: relative;
+    overflow: hidden; /* 防止内容溢出 */
+  }
+  
+  .review-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease; /* 添加淡入淡出效果 */
+    padding: 1rem; /* 内边距 */
+    box-sizing: border-box; /* 确保内边距不影响宽度和高度 */
+    pointer-events: none; /* 不拦截点击事件 */
+  }
+  
+  .story-card:hover .review-overlay {
+    opacity: 0.5; /* 悬浮时显示 */
+  }

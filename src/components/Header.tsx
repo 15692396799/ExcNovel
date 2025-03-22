@@ -23,7 +23,7 @@ const Header: React.FC = () => {
 
             <nav className="nav">
                 <Link to="/">首页</Link>
-                <Link to="/categories">分类</Link>
+                <Link to="/categories" >分类</Link>
                 <Link to="/subscription">订阅</Link>
                 <Link to="/about">关于</Link>
             </nav>

@@ -5,6 +5,8 @@ interface Story {
     description: string;
     type: string;
     rating: number;
+    likes: number;
+    hotReview: string;
 }
 
 interface Category {
