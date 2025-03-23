@@ -7,7 +7,7 @@ class CategoryStore {
   categories: Category[] = [];
 
   // 当前选中的分类
-  selectedCategory: Category | null = null;
+  selectedType : string = 'default';
 
   // 故事列表
   stories: Story[] = [];
@@ -25,13 +25,13 @@ class CategoryStore {
   constructor() {
     makeObservable(this, {
       categories: observable,
-      selectedCategory: observable,
+      selectedType: observable,
       stories: observable,
       loading: observable,
       error: observable,
       currentPage: observable,
       setCategories: action,
-      setSelectedCategory: action,
+      setSelectedType: action,
       setStories: action,
       setLoading: action,
       setError: action,
@@ -47,8 +47,8 @@ class CategoryStore {
   }
 
   // 设置选中的分类
-  setSelectedCategory(category: Category | null) {
-    this.selectedCategory = category;
+  setSelectedType(type: string) {
+    this.selectedType = type;
     this.currentPage = 1; // 切换到第一页
   }
 

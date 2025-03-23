@@ -3,12 +3,14 @@ import { observer } from 'mobx-react';
 import categoryStore from './store';
 
 const CategoryFilter: React.FC = observer(() => {
-  const { categories, selectedCategory } = categoryStore;
+  const { categories, selectedType } = categoryStore;
 
   const handleFilter = (type: string) => {
     const selectedCategory = categories.find((category) => category.type === type);
-    categoryStore.setSelectedCategory(selectedCategory||null);
+    categoryStore.setSelectedType(selectedCategory?.type || 'default');
   };
+
+  const selectedName = categories.find((category) => category.type === selectedType)?.name;
 
   return (
     <div className="container mt-4">
@@ -23,7 +25,7 @@ const CategoryFilter: React.FC = observer(() => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          {selectedCategory ? selectedCategory.name : 'Select a Category'}
+          {selectedType!='default' ? selectedName : 'Select a Category'}
         </button>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
           {categories.map((category) => (

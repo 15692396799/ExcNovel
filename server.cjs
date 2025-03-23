@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const { create } = require('axios');
 const app = express();
 const port = 5000;
 
@@ -23,16 +24,57 @@ mongoose.connect('mongodb://localhost:27017/excnov-db', {
 const storySchema = new mongoose.Schema({
     id: Number,
     title: String, 
+    author: String,
     description: String,       
     image: String,
-    category: String,
+    type: String,
     rating: Number,
+    likes: Number,
+    dislikes: Number,
 });
+
 const categorySchema = new mongoose.Schema({
     id: Number,
     name: String,
     type: String,
 });
+
+const commentSchema = new mongoose.Schema({
+    id: Number,
+    storyId: Number,
+    userId: Number,
+    content: String,
+    date: Date,
+    ipAddress: String,
+    likes: Number,
+    dislikes: Number,
+    qutoeCommentId: Number,
+    moderationStatus: String,
+    // rating: Number,
+
+});
+
+const userSchema = new mongoose.Schema({
+    id: Number,
+    username: String,
+    email: String,
+    password: String,
+    role: String,
+    createDate:Date,
+    updateDate:Date,
+    ipAddress: String,
+    status: String,
+    avartarUrl: String,
+    bio: String,
+    lastLogin: Date,
+    loginAttempted: Number,
+    loginBlocked: Boolean,
+    perforences: Object,
+    address: Object,
+    socialMedia: Object,
+
+});
+
 
 const Story = mongoose.model('Story', storySchema, 'stories');
 const Category = mongoose.model('Category', categorySchema, 'categories');
