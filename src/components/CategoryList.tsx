@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import categoryStore from './store';
+import {categoryStore} from './stores/category';
 import StoryCard from './StoryCard';
 
 const CategoryList: React.FC = observer(() => {

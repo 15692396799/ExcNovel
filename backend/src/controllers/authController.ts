@@ -49,7 +49,7 @@ export const login = async (req: Request, res: Response) => {
 
         // 验证密码
         const isPasswordValid = await (user as any).comparePassword(password);
-        console.log(isPasswordValid);
+        // console.log(isPasswordValid);
         if (!isPasswordValid) {
             res.status(400).json({ message: 'Wrong password !' });
             return;

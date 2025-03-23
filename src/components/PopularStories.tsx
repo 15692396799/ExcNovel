@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import categoryStore from './store';
+// import categoryStore from './stores/category';
 import { Story } from '../types'; // 导入 Story 类型
 import '../styles/PopularStories.css'; // 自定义样式文件
 import StoryCard from './StoryCard';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { reaction } from 'mobx';
-import categoryStore from './store';
+import {categoryStore} from './stores/category';
 import CategoryFilter from './CategoryFilter';
 import CategoryList from './CategoryList';
 import PageController from './PageController';

@@ -1,6 +1,6 @@
 import { makeObservable, observable, action, computed } from 'mobx';
 
-import { Category, Story } from '../types';
+import { Category, Story } from '../../types';
 
 class CategoryStore {
   // 分类数据
@@ -86,5 +86,6 @@ class CategoryStore {
 }
 
 // 创建 Store 实例并导出
-const categoryStore = new CategoryStore();
-export default categoryStore;
+export const categoryStore = new CategoryStore();
+
+

@@ -25,8 +25,8 @@ const userSchema = new Schema({
 // 密码加密钩子
 userSchema.pre('save', async function (next) {
     if (this.isModified('password')) {
-        console.log('pre save');
-        console.log(this .password);
+        // console.log('pre save');
+        // console.log(this .password);
         this.password = await bcrypt.hash(this.password, 10);
         console.log(this.password);
     }
@@ -35,9 +35,9 @@ userSchema.pre('save', async function (next) {
 
 // 密码验证方法
 userSchema.methods.comparePassword = async function (password: string) {
-    console.log('comparePassword');
-    console.log(password);
-    console.log(this.password);
+    // console.log('comparePassword');
+    // console.log(password);
+    // console.log(this.password);
     return await bcrypt.compare(password, this.password);
 };
 
