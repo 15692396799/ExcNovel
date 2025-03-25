@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authStore } from '../components/stores/auth';
 
-const RedirectToHomePage = () => {
+const RedirectPage = () => {
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState(3);
   const [isLoading, setIsLoading] = useState(true);
@@ -53,7 +53,7 @@ const RedirectToHomePage = () => {
               立即跳转。
           </p>
           {authStore.isLoggedIn ? (
-              <p>欢迎回来，{authStore.username}！</p>
+              <p>欢迎回来，{authStore.user?.username}！</p>
           ) : (
               <p>请先登录或注册。</p>
           )}
@@ -61,4 +61,4 @@ const RedirectToHomePage = () => {
   );
 };
 
-export default RedirectToHomePage;
+export default RedirectPage;

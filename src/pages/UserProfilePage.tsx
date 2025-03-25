@@ -1,6 +1,7 @@
 import React from 'react';
 import { authStore } from '../components/stores/auth';
 import { useNavigate } from 'react-router-dom';
+
 const Profile = () => {
     const navigate = useNavigate();
 
@@ -19,8 +20,8 @@ const Profile = () => {
         <div>
             <div>
                 <h1>个人信息</h1>
-                <p>用户名: {authStore.username}</p>
-                <p>邮箱: {authStore.email}</p>
+                <p>用户名: {authStore.user?.username}</p>
+                <p>邮箱: {authStore.user?.email}</p>
                 {/* 其他个人信息 */}
             </div>
             <button className="btn btn-danger" onClick={handleLogout}>

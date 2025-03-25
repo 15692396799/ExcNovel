@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 import { authStore } from './stores/auth';
@@ -15,6 +15,8 @@ const Header: React.FC = () => {
         setContent(inputValue);
         console.log(inputValue);
     };
+
+
 
     return (
 <header className="header navbar navbar-expand-lg navbar-light bg-light">
@@ -58,8 +60,8 @@ const Header: React.FC = () => {
 
             {/* 用户信息，占 2 列 */}
             <div className="user navbar-nav col-2 d-flex justify-content-start">
-                {authStore.isLoggedIn ? (
-                    <Link className="nav-link" to='/profile'>{authStore.username}</Link>
+                {authStore.isLoggedIn? (
+                    <Link className="nav-link" to='/profile'>{authStore.user?.username}</Link>
                 ) : (
                     <Link className="nav-link" to="/auth">登录/注册</Link>
                 )}

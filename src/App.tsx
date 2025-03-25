@@ -5,7 +5,7 @@ import StoryDetailPage from './pages/StoryDetailPage.tsx';
 import SubscriptionPage from './pages/SubscriptionPage.tsx';
 import UserAuthPage from './pages/UserAuthPage.tsx';
 import UserProfilePage from './pages/UserProfilePage.tsx';
-import RedirectToHomePage from './pages/RedirectToHomePage.tsx';
+import RedirectPage from './pages/RedirectPage.tsx';
 import ProtectedRoute from './components/ProtectedRoute.tsx';
 
 import { authStore } from './components/stores/auth';
@@ -20,6 +20,12 @@ import Categories from './components/Categories.tsx';
 
 function App() {
 
+  // useEffect(() => {
+  //   const savedUser = localStorage.getItem('user');
+  //   if (savedUser) {
+  //     authStore.setAuthState(JSON.parse(savedUser));
+  //   }
+  // }, []);
 
   return (
     <>
@@ -39,7 +45,7 @@ function App() {
             }
           />
           <Route path="/auth" element={<UserAuthPage />}></Route>
-          <Route path="/redirect" element={<RedirectToHomePage />}></Route>
+          <Route path="/redirect" element={<RedirectPage />}></Route>
           <Route path="*" element={<h1>Not Found</h1>}></Route>
         </Routes>
       </Router>

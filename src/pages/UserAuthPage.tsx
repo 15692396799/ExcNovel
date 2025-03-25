@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { authStore } from '../components/stores/auth';
 import { useNavigate } from 'react-router-dom';
@@ -14,86 +14,62 @@ const UserAuthPage = () => {
 
     const navigate = useNavigate();
 
-    // 处理登录
-    const handleLogin = async () => {
+    // 自动重定向已登录用户
+    // useEffect(() => {
+    //     if (authStore.isLoggedIn) {
+    //         navigate('/redirect');
+    //     }
+    // }, [authStore.isLoggedIn, navigate]);
+
+    //处理登录
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
         if (!username || !password) {
             setMessage({ text: 'Please enter username and password', type: 'error' });
             return;
         }
 
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', {
-                username,
-                password,
-            });
-
-            // 存储 JWT 到 localStorage
-            localStorage.setItem('token', response.data.token);
-
-            //更新mobx状态
-            authStore.login(response.data.user.username, response.data.user.email);
-
-            // 更新用户状态
-            setUser({ username: response.data.user.username, email: response.data.user.email });
-            setIsLoggedIn(true);
-            setMessage({ text: 'Login Successfully!', type: 'success' });
-
-            // 重定向
+            await authStore.login(username, password);
+            setMessage({ text: 'Login successful!', type: 'success' });
             navigate('/redirect');
-
-        } catch (err) {
-            setMessage({ text: (err as any).response?.data?.message || 'Login failed', type: 'error' });
+        } catch (error) {
+            setMessage({
+                text: error instanceof Error ? error.message : 'Login failed',
+                type: 'error'
+            });
         }
     };
 
     // 处理注册
-    const handleRegister = async () => {
+    const handleRegister = async (e: React.FormEvent) => {
+        e.preventDefault();
         if (!username || !password || !email) {
             setMessage({ text: 'Please fill in all fields', type: 'error' });
             return;
         }
 
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/register', {
-                username,
-                email,
-                password,
+            // 假设你的 authStore 有 register 方法
+            await authStore.register(username, email, password);
+            setMessage({ text: 'Registration successful!', type: 'success' });
+            navigate('/redirect');
+        } catch (error) {
+            setMessage({
+                text: error instanceof Error ? error.message : 'Registration failed',
+                type: 'error'
             });
-
-            // 存储 JWT 到 localStorage
-            localStorage.setItem('token', response.data.token);
-            
-            //更新mobx状态
-            authStore.login(response.data.user.username, response.data.user.email);
-
-            // 更新用户状态
-            setUser({ username: response.data.user.username, email: response.data.user.email });
-            setIsLoggedIn(true);
-            setMessage({ text: 'Registration Successfully!', type: 'success' });
-        } catch (err) {
-            setMessage({ text: (err as any).response?.data?.message || 'Registration failed', type: 'error' });
         }
     };
 
-    // // 处理注销
-    // const handleLogout = () => {
-    //     // 清除 localStorage 中的 JWT
-    //     localStorage.removeItem('token');
-
-    //     //更新mobx状态
-    //     authStore.logout();
-
-    //     // 重置状态
-    //     setIsLoggedIn(false);
-    //     setUser(null);
-    //     setUsername('');
-    //     setPassword('');
-    //     setEmail('');
-    //     setMessage(null);
-
-    //     // 重定向
-    //     navigate('/redirect');
-    // };
+    // 切换登录/注册表单
+    const toggleAuthMode = () => {
+        setIsRegistering(!isRegistering);
+        setMessage(null);
+        setUsername('');
+        setPassword('');
+        setEmail('');
+    };
 
     return (
         <div className="container mt-5">
