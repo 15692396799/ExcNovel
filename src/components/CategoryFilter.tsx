@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import {categoryStore} from './stores/category';
+import {categoryStore} from '../stores/category';
 
 const CategoryFilter: React.FC = observer(() => {
   const { categories, selectedType } = categoryStore;

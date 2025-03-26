@@ -11,7 +11,7 @@ export default function HomePage() {
         <div>
             <h1>Home Page</h1>
             <p>Welcome to the Home Page</p>
-            <Header/>
+            {/* <Header/> */}
             <Banner/>
             {/* <Categories/>             */}
             <PopularStories/>

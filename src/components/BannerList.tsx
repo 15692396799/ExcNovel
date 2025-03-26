@@ -1,7 +1,9 @@
 import React from 'react';
 import '../styles/BannerList.css';
 import StoryCard from './StoryCard';
-import { Story } from '../types';
+import { Story } from '../types/story';
+import { categoryStore } from '../stores/category';
+import '../styles/BannerList.css'
 
 
 interface BannerListProps {
@@ -9,6 +11,7 @@ interface BannerListProps {
 }
 
 const BannerList: React.FC<BannerListProps> = ({ banners }) => {
+
   return (
     <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
       {/* 轮播指示器 */}
@@ -31,10 +34,9 @@ const BannerList: React.FC<BannerListProps> = ({ banners }) => {
         {banners.map((banner, index) => (
           <div key={index} className={index === 0 ? "carousel-item active" : "carousel-item"} data-bs-interval="3000">
             <StoryCard story={banner}>
-          
+       
             </StoryCard>
-            <h5>{banner.title}</h5>
-            <p>{banner.description}</p>    
+   
           </div>
         ))}
       </div>

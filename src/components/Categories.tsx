@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { reaction } from 'mobx';
-import {categoryStore} from './stores/category';
+import {categoryStore} from '../stores/category';
 import CategoryFilter from './CategoryFilter';
 import CategoryList from './CategoryList';
 import PageController from './PageController';
-import { Category, Story } from '../types';
+import {Category} from '../types/category';
+import {Story} from '../types/story';
+import '../styles/Categories.css';
 
 interface CategoriesProps {}
 
@@ -17,7 +19,7 @@ const Categories: React.FC<CategoriesProps> = observer(() => {
   const fetchTypeUrl = 'http://localhost:5000/api/stories/type';
 
   useEffect(() => {
-    fetchCategories();
+    // fetchCategories();
     fetchStories();
 
     // 监听selectedCategory的变化

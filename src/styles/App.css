@@ -40,3 +40,37 @@
 .read-the-docs {
   color: #888;
 }
+
+
+/* 基础主题样式 */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 亮色主题 */
+body.light-theme {
+  --custom-bg-color: #ffffff;
+  --custom-text-color: #212529;
+  background-color: var(--custom-bg-color);
+  color: var(--custom-text-color);
+}
+
+/* 暗色主题 */
+body.dark-theme {
+  --custom-bg-color: #212529;
+  --custom-text-color: #f8f9fa;
+  background-color: var(--custom-bg-color);
+  color: var(--custom-text-color);
+}
+
+/* 组件特定主题样式 */
+.dark-theme .card {
+  background-color: #2c3034;
+  border-color: #373b3e;
+}
+
+.dark-theme .modal-content {
+  background-color: #2c3034;
+}
+
+/* 可以继续添加更多组件的暗色模式样式 */

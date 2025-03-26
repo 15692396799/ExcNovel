@@ -7,11 +7,7 @@ interface Story {
     rating: number;
     likes: number;
     hotReview: string;
+    author: string;
 }
 
-interface Category {
-    id: number;
-    name: string;
-    type: string;
-}
-export type {Story, Category};
+export type {Story};

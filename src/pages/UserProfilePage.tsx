@@ -1,5 +1,5 @@
 import React from 'react';
-import { authStore } from '../components/stores/auth';
+import { authStore } from '../stores/auth';
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {

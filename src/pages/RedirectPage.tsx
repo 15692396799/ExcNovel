@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { authStore } from '../components/stores/auth';
+import { authStore } from '../stores/auth';
 
 const RedirectPage = () => {
   const navigate = useNavigate();

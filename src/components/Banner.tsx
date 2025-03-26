@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../styles/Banner.css';
-import { Story } from '../types';
+import { Story } from '../types/story';
 import BannerList from './BannerList';
 import { ExecException } from 'child_process';
 

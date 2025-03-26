@@ -1,6 +1,9 @@
 import { makeObservable, observable, action, computed } from 'mobx';
 
-import { Category, Story } from '../../types';
+import {Category} from '../types/category';
+import {Story} from '../types/story';
+
+import categoriesData from '../data/excnov-db.categories.json';
 
 class CategoryStore {
   // 分类数据
@@ -39,7 +42,37 @@ class CategoryStore {
       currentNovels: computed,
       totalPages: computed,
     });
+    this.loadCategories();
   }
+
+    // 从JSON文件加载分类
+    async loadCategories() {
+      this.loading = true;
+      this.error = null;
+      
+      try {
+        // 模拟异步加载（实际从JSON文件直接导入是同步的）
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
+        this.categories = categoriesData;
+        this.loading = false;
+      } catch (error) {
+        this.error = new Error('加载分类数据错误');
+        this.loading = false;
+        console.error('加载分类数据错误:', error);
+      }
+    }
+  
+    // 获取所有分类
+    get allCategories() {
+      return this.categories;
+    }
+  
+    // 根据类型获取分类名称
+    getCategoryName(type: string): string {
+      const category = this.categories.find(c => c.type === type);
+      return category ? category.name : '未知分类';
+    }
 
   // 设置分类数据
   setCategories(categories: Category[]) {

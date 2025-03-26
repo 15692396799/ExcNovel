@@ -1,51 +1,26 @@
-/* Footer.css */
-/* .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.footer {
-    background-color: #f8f9fa;
-    padding: 2rem 0;
-    width: 100%;
-} */
-
-.footer h5 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #000;
-    margin-bottom: 1rem;
-}
-
-.footer p {
-    font-size: 1rem;
-    color: #6c757d;
-    margin-bottom: 1rem;
-}
-
-.footer a {
-    color: #6c757d;
-    text-decoration: none;
-    margin-right: 1rem;
-}
-
-a:hover {
-    color: #4450d4 !important;
-    /* 悬停时变为黑色 */
-    transition: color 0.3s ease;
-}
-
-
-
-@media (max-width: 768px) {
-    .footer h5 {
-        font-size: 1.2rem;
-    }
-
-    .footer p,
-    .footer a {
-        font-size: 0.9rem;
-    }
-}
+/* 基础样式 */
+footer {
+    transition: background-color 0.3s ease;
+  }
+  
+  /* 链接悬停效果 */
+  footer a {
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+  
+  footer a:hover {
+    opacity: 1 !important;
+    color: var(--bs-primary) !important;
+    text-decoration: underline;
+  }
+  
+  /* 暗色模式下的边框颜色 */
+  [data-bs-theme=dark] footer {
+    border-top: 1px solid #495057;
+  }
+  
+  /* Bootstrap图标调整 */
+  .bi {
+    font-size: 1.1rem;
+    vertical-align: middle;
+  }

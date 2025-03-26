@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import {categoryStore} from './stores/category';
+import {categoryStore} from '../stores/category';
 import StoryCard from './StoryCard';
 
 const CategoryList: React.FC = observer(() => {
@@ -13,7 +13,7 @@ const CategoryList: React.FC = observer(() => {
           <div className="card h-100">
             <div className="row g-0">
               {/* 左侧：图片缩略图 */}
-              <div className="col-md-4">
+              <div className="col-md-6">
                 {/* <img
                   src={novel.image}
                   className="img-fluid rounded-start"
@@ -24,7 +24,7 @@ const CategoryList: React.FC = observer(() => {
               </div>
 
               {/* 右侧：文字介绍 */}
-              <div className="col-md-8">
+              <div className="col-md-4">
                 <div className="card-body">
                   <h5 className="card-title">{novel.title}</h5>
                   <p className="card-text">{novel.description}</p>

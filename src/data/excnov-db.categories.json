@@ -1,0 +1,80 @@
+[{
+  "_id": {
+    "$oid": "67dd0bdb204d5ec7ef056e69"
+  },
+  "id": 1,
+  "name": "爱情",
+  "type": "love"
+},
+{
+  "_id": {
+    "$oid": "67dd0bdb204d5ec7ef056e6a"
+  },
+  "id": 2,
+  "name": "科幻",
+  "type": "sci-fi"
+},
+{
+  "_id": {
+    "$oid": "67dd0bdb204d5ec7ef056e6b"
+  },
+  "id": 3,
+  "name": "悬疑",
+  "type": "mystery"
+},
+{
+  "_id": {
+    "$oid": "67dd0bdb204d5ec7ef056e6c"
+  },
+  "id": 4,
+  "name": "历史",
+  "type": "history"
+},
+{
+  "_id": {
+    "$oid": "67dd0bdb204d5ec7ef056e6d"
+  },
+  "id": 5,
+  "name": "奇幻",
+  "type": "fantasy"
+},
+{
+  "_id": {
+    "$oid": "67dd0bdb204d5ec7ef056e6e"
+  },
+  "id": 6,
+  "name": "恐怖",
+  "type": "horror"
+},
+{
+  "_id": {
+    "$oid": "67dd0bdb204d5ec7ef056e6f"
+  },
+  "id": 7,
+  "name": "武侠",
+  "type": "martial-arts"
+},
+{
+  "_id": {
+    "$oid": "67dd0bdb204d5ec7ef056e70"
+  },
+  "id": 8,
+  "name": "都市",
+  "type": "urban"
+},
+{
+  "_id": {
+    "$oid": "67dd0bdb204d5ec7ef056e71"
+  },
+  "id": 9,
+  "name": "青春",
+  "type": "youth"
+},
+{
+  "_id": {
+    "$oid": "67dd0bdb204d5ec7ef056e72"
+  },
+  "id": 10,
+  "name": "经典",
+  "type": "classic"
+}]

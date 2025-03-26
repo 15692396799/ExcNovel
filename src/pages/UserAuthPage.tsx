@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { authStore } from '../components/stores/auth';
+import { authStore } from '../stores/auth';
 import { useNavigate } from 'react-router-dom';
 
 const UserAuthPage = () => {

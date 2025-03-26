@@ -17,3 +17,14 @@
     padding: 20px;
     border-radius: 10px;
   }
+
+  
+  /* 卡片图片容器 */
+/* .card-img-container {
+  overflow: hidden;
+} */
+
+ .carousel-inner {
+  overflow: hidden;
+ }
+  

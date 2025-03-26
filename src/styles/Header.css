@@ -1,18 +1,90 @@
-.header {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* 导航链接指示器样式 */
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0.5rem;
+  transition: color 0.3s ease;
+  flex-grow: 1;
+  text-align: center;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+.nav-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background-color: #0d6efd;
+  border-radius: 3px;
+  transition: width 0.3s ease;
 }
 
-.search {
-  margin-left: auto;
-  margin-right: 1rem;
+.nav-link.active .nav-indicator {
+  width: 70%;
 }
 
-.user {
-  margin-left: 1rem;
+/* 暗色模式适配 */
+[data-bs-theme=dark] .nav-indicator {
+  background-color: #09111f;
 }
 
+/* 导航栏悬停效果 */
+.nav-link:hover:not(.active) {
+  color: rgba(var(--bs-link-color-rgb), 0.8) !important;
+}
+
+/* 品牌Logo样式 */
+.navbar-brand {
+  min-width: 80px;
+}
+
+/* 搜索框容器 */
+.search-container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    padding-top: 1rem;
+  }
+  
+  .nav {
+    margin-bottom: 1rem;
+    flex-direction: column;
+  }
+  
+  .nav-link {
+    margin-bottom: 0.5rem;
+    text-align: left;
+    padding: 0.75rem 1rem;
+  }
+  
+  /* 移动端隐藏指示器 */
+  .nav-indicator {
+    display: none;
+  }
+  
+  /* 移动端调整比例 */
+  .navbar-collapse .row > [class^="col-"] {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+/* 桌面端导航链接等分布局 */
+@media (min-width: 992px) {
+  .nav {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .nav-link {
+    flex: 1;
+    max-width: 25%; /* 4个链接均分4份 */
+  }
+}
